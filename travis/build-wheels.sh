@@ -5,9 +5,9 @@ yum install -y python-hashlib
 curl https://copr.fedorainfracloud.org/coprs/mlampe/llvm_381_el5/repo/epel-5/mlampe-llvm_381_el5-epel-5.repo -o /etc/yum.repos.d/mlampe-llvm_381_el5-epel-5.repo
 yum update -y
 yum install -y openssl-devel
-yum install -y clang
+#yum install -y clang
 
-export CC=clang
+export CC=clang++
 export CXX=clang++
 #ln -sf /usr/bin/clang-3.8 /usr/bin/gcc
 
