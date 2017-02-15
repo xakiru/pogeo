@@ -21,7 +21,7 @@ if platform == 'win32':
     ssl_name = 'ssleay32'
 else:
     if platform == 'darwin':
-        extra_args = ['-stdlib=libc++', '-Wno-unused-local-typedef']
+        extra_args = ['-stdlib=libc++', '-Wno-unused-local-typedef', '-fpermissive']
     else:
         extra_args.append('-Wno-ignore-qualifiers')
     extra_args.append('-std=c++11')
@@ -88,7 +88,7 @@ pogeo = Extension('pogeo',
                       'geometry/s2regionunion.cc',
                       'pogeo.cpp'
                   ],
-                  include_dirs = ['geometry', 'geometry/s2', 'geometry/util/math', '/usr/include', openssl_headers, '/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2'],
+                  include_dirs = ['geometry', 'geometry/s2', 'geometry/util/math', '/usr/include', openssl_headers],
                   language='c++')
 
 setup (name = 'pogeo',
