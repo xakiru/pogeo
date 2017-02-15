@@ -2,6 +2,7 @@
 set -e -x
 
 curl https://copr.fedorainfracloud.org/coprs/mlampe/llvm_381_el5/repo/epel-5/mlampe-llvm_381_el5-epel-5.repo -o /etc/yum.repos.d/mlampe-llvm_381_el5-epel-5.repo
+sed -i 's|https://|http://|g' /etc/yum.repos.d/mlampe-llvm_381_el5-epel-5.repo
 yum update -y
 yum install -y yum-plugin-copr
 yum install -y openssl-devel
