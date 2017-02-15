@@ -1,7 +1,11 @@
 #!/bin/bash
 set -e -x
-
+yum update -y
+yum install -y yum-plugin-copr
+yum copr enable mlampe/llvm_381_el5
 yum install -y openssl-devel
+yum update -y
+yum install clang
 
 # Compile wheels
 for PYBIN in /opt/python/cp3*/bin; do
