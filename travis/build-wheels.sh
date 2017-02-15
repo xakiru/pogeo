@@ -7,6 +7,10 @@ yum update -y
 yum install -y openssl-devel
 yum install -y clang
 
+export CC=clang
+export CXX=clang++
+#ln -sf /usr/bin/clang-3.8 /usr/bin/gcc
+
 # Compile wheels
 for PYBIN in /opt/python/cp3*/bin; do
     "${PYBIN}/pip" wheel /io/ -w wheelhouse/
@@ -17,10 +21,7 @@ for whl in wheelhouse/*.whl; do
     auditwheel repair "$whl" -w /io/wheelhouse/
 done
 
-export CC=clang-3.8
-export CXX=clang++
-ln -sf /usr/bin/clang-3.8 /usr/bin/gcc
 # Install packages and test
 for PYBIN in /opt/python/cp3*/bin/; do
-    "${PYBIN}/pip" install git+https://github.com/Noctem/pogeo.git --no-index -f /io/wheelhouse
+    "${PYBIN}/pip" install pogeo --no-index -f /io/wheelhouse
 done
