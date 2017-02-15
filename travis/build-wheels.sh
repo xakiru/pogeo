@@ -8,6 +8,7 @@ yum -y groupinstall 'Development Tools'
 yum install -y curl git irb python-setuptools ruby
 
 curl https://raw.githubusercontent.com/Linuxbrew/install/master/install -o install.rb
+sed -i 's|abort "Don|#abort "|g' install.rb
 ruby install.rb
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 
