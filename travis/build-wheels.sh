@@ -1,19 +1,16 @@
 #!/bin/bash
-set -x
+set -x -e
 
-yum install -y python-hashlib
-curl https://copr.fedorainfracloud.org/coprs/mlampe/llvm_381_el5/repo/epel-5/mlampe-llvm_381_el5-epel-5.repo -o /etc/yum.repos.d/mlampe-llvm_381_el5-epel-5.repo
 yum update -y
-yum install -y openssl-devel
-yum install -y clang
-#yum install -y devtoolset-2 devtoolset-2-gcc-c++-4.8.2 devtoolset-2-libstdc++-devel
+yum -y groupinstall 'Development Tools'
+yum install -y curl git irb python-setuptools ruby
 
-set -e
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+export PATH="$HOME/.linuxbrew/bin:$PATH"
 
-#source /opt/rh/devtoolset-2/enable
-export CC=clang++
-export CXX=clang++
-#ln -sf /usr/bin/clang-3.8 /usr/bin/gcc
+brew install gcc@5
+export CC=g++-5
+export CXX=g++-5
 
 # Compile wheels
 for PYBIN in /opt/python/cp3*/bin; do
