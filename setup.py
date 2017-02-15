@@ -21,10 +21,11 @@ if platform == 'win32':
     ssl_name = 'ssleay32'
 else:
     if platform == 'darwin':
-        extra_args = ['-stdlib=libc++', '-Wno-unused-local-typedef', '-fpermissive']
+        extra_args = ['-Wno-unused-local-typedef', '-fpermissive']
     else:
         extra_args.append('-Wno-ignore-qualifiers')
     extra_args.append('-std=c++11')
+    extra_args.append('-fpermissive')
     libraries = ['ssl', 'crypto']
     ssl_name = 'ssl'
 
@@ -63,6 +64,7 @@ pogeo = Extension('pogeo',
                       'geometry/util/coding/coder.cc',
                       'geometry/util/coding/varint.cc',
                       'geometry/util/math/exactfloat/exactfloat.cc',
+                      'geometry/util/math/mathlimits.cc',
                       'geometry/util/math/mathutil.cc',
                       'geometry/s1angle.cc',
                       'geometry/s2.cc',

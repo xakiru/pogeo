@@ -1,17 +1,17 @@
 #!/bin/bash
 set -x
 
-#yum install -y python-hashlib
-#curl https://copr.fedorainfracloud.org/coprs/mlampe/llvm_381_el5/repo/epel-5/mlampe-llvm_381_el5-epel-5.repo -o /etc/yum.repos.d/mlampe-llvm_381_el5-epel-5.repo
+yum install -y python-hashlib
+curl https://copr.fedorainfracloud.org/coprs/mlampe/llvm_381_el5/repo/epel-5/mlampe-llvm_381_el5-epel-5.repo -o /etc/yum.repos.d/mlampe-llvm_381_el5-epel-5.repo
 yum update -y
 yum install -y openssl-devel
-yum install -y devtoolset-2 devtoolset-2-gcc-c++-4.8.2 devtoolset-2-libstdc++-devel
+#yum install -y devtoolset-2 devtoolset-2-gcc-c++-4.8.2 devtoolset-2-libstdc++-devel
 
 set -e
 
-source /opt/rh/devtoolset-2/enable
-export CC=g++
-export CXX=g++
+#source /opt/rh/devtoolset-2/enable
+export CC=clang++
+export CXX=clang++
 #ln -sf /usr/bin/clang-3.8 /usr/bin/gcc
 
 # Compile wheels
