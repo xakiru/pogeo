@@ -92,6 +92,6 @@ pogeo = Extension('pogeo',
                   language='c++')
 
 setup (name = 'pogeo',
-       version = '0.1',
+       version = '0.2.0',
        description = 'Fast C++ extension for calculating cell IDs.',
        ext_modules = [pogeo])
