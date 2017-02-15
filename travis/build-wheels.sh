@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -x
 
 yum install -y python-hashlib
@@ -6,7 +6,7 @@ curl https://copr.fedorainfracloud.org/coprs/mlampe/llvm_381_el5/repo/epel-5/mla
 yum update -y
 yum install -y openssl-devel
 yum install -y clang
-#yum install -y devtoolset-2 devtoolset-2-gcc-c++-4.8.2 devtoolset-2-libstdc++-devel
+yum install -y devtoolset-2 devtoolset-2-gcc-c++-4.8.2 devtoolset-2-libstdc++-devel
 
 set -e
 

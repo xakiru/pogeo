@@ -49,7 +49,7 @@ openssl_headers = join(openssl_dir, 'include')
 
 pogeo = Extension('pogeo',
                   define_macros = [('S2_USE_EXACTFLOAT', None), ('ARCH_K8', None)],
-                  library_dirs = [openssl_libs],
+                  library_dirs = [openssl_libs, '​opt​/​rh​/​devtoolset​-​2​/​root​/​usr​/​lib​/​gcc​/​x86​_​64​-​Cent​OS​-​linux​/​4​.​8​.​2​/​'],
                   libraries = libraries,
                   extra_compile_args = extra_args,
                   extra_link_args = extra_args,
@@ -89,7 +89,7 @@ pogeo = Extension('pogeo',
                       'geometry/s2regionunion.cc',
                       'pogeo.cpp'
                   ],
-                  include_dirs = ['geometry', 'geometry/s2', 'geometry/util/math', '/usr/include', openssl_headers],
+                  include_dirs = ['geometry', 'geometry/s2', 'geometry/util/math', '/usr/include', openssl_headers, '/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2'],
                   language='c++')
 
 setup (name = 'pogeo',
