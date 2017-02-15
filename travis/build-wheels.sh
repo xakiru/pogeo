@@ -17,8 +17,9 @@ for whl in wheelhouse/*.whl; do
     auditwheel repair "$whl" -w /io/wheelhouse/
 done
 
-export CC=clang
+export CC=clang-3.8
 export CXX=clang++
+ln -sf /usr/bin/clang-3.8 /usr/bin/gcc
 # Install packages and test
 for PYBIN in /opt/python/cp3*/bin/; do
     "${PYBIN}/pip" install git+https://github.com/Noctem/pogeo.git --no-index -f /io/wheelhouse
