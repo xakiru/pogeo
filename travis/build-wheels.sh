@@ -9,8 +9,9 @@ yum install -y devtoolset-2 devtoolset-2-gcc-c++-4.8.2 devtoolset-2-libstdc++-de
 
 set -e
 
-export CC=/opt/rh/devtoolset-2/root/usr/bin/g++
-export CXX=/opt/rh/devtoolset-2/root/usr/bin/g++
+source /opt/rh/devtoolset-2/enable
+export CC=g++
+export CXX=g++
 #ln -sf /usr/bin/clang-3.8 /usr/bin/gcc
 
 # Compile wheels
