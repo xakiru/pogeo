@@ -88,7 +88,7 @@ pogeo = Extension('pogeo',
                       'geometry/s2regionunion.cc',
                       'pogeo.cpp'
                   ],
-                  include_dirs = ['geometry', 'geometry/s2', 'geometry/util/math', '/usr/include', openssl_headers],
+                  include_dirs = ['geometry', 'geometry/s2', 'geometry/util/math', '/usr/include', openssl_headers, '/opt/rh/devtoolset-2/root/usr/include/c++/4.8.2'],
                   language='c++')
 
 setup (name = 'pogeo',
