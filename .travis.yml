@@ -1,37 +1,5 @@
 matrix:
   include:
-    - services: docker
-      os: linux
-      dist: trusty
-      python: 3.6
-      sudo: required
-      env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
-    - os: linux
-      dist: trusty
-      python: 3.5
-      sudo: required
-      language: python
-      compiler: clang
-      env: COMPILER='clang++-3.9'
-      addons:
-        apt:
-          sources:
-            - ['llvm-toolchain-trusty-3.9', 'ubuntu-toolchain-r-test']
-          packages:
-            - 'clang-3.9'
-    - os: linux
-      dist: trusty
-      python: 3.6
-      sudo: required
-      language: python
-      compiler: g++
-      env: COMPILER='g++-6'
-      addons:
-        apt:
-          sources:
-            - ubuntu-toolchain-r-test
-          packages:
-            - g++-6
     - os: osx
       osx_image: xcode6.4
       language: generic
@@ -44,8 +12,6 @@ matrix:
 
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update && brew install python3; fi
-  - if [[ "$TRAVIS_OS_NAME" == "linux" && -z "$DOCKER_IMAGE" ]]; then sudo update-alternatives --install /usr/bin/gcc gcc "/usr/bin/${COMPILER}" 1; sudo update-alternatives --install /usr/bin/g++ g++ "/usr/bin/${COMPILER}" 1; export CC="${COMPILER}"; export CXX="${COMPILER}"; fi
-  - if [[ -n "$DOCKER_IMAGE" ]]; then docker pull $DOCKER_IMAGE; fi
   - pip3 install -U setuptools
 
 install:
@@ -54,4 +20,6 @@ install:
 
 script: if [[ -z "$DOCKER_IMAGE" ]]; then python3 test.py; else ls wheelhouse/*; fi
 
-after_success: travis/distribute.sh
+after_success:
+  - travis/distribute.sh
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis/build-bottle.sh; fi
