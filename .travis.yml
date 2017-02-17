@@ -11,15 +11,12 @@ matrix:
       language: generic
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update && brew install python3; fi
+  - brew update
+  - brew install python3
   - pip3 install -U setuptools
 
-install:
-  - if [[ -z "$DOCKER_IMAGE" ]]; then python3 setup.py install; fi
-  - if [[ -n "$DOCKER_IMAGE" ]]; then docker run --rm -v `pwd`:/io $DOCKER_IMAGE /io/travis/manylinux-build.sh; fi
+install: then python3 setup.py install
 
-script: if [[ -z "$DOCKER_IMAGE" ]]; then python3 test.py; else ls wheelhouse/*; fi
+script: python3 test.py
 
-after_success:
-  - travis/distribute.sh
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then travis/build-bottle.sh; fi
+after_success: travis/build-bottle.sh
